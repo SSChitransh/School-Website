@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern City Montessori Inter College</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0b1120;
+      color: #e2e8f0;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* ===== GEOMETRIC BACKGROUND ===== */
+    .bg-geometric {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .bg-geometric .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.08;
+      background: linear-gradient(135deg, #f97316, #3b82f6);
+      animation: floatShape 20s infinite alternate ease-in-out;
+    }
+    .bg-geometric .shape:nth-child(1) {
+      width: 400px;
+      height: 400px;
+      top: -100px;
+      right: -100px;
+      animation-duration: 25s;
+    }
+    .bg-geometric .shape:nth-child(2) {
+      width: 300px;
+      height: 300px;
+      bottom: -50px;
+      left: -50px;
+      animation-duration: 18s;
+      animation-delay: -5s;
+      background: linear-gradient(135deg, #3b82f6, #f97316);
+    }
+    .bg-geometric .shape:nth-child(3) {
+      width: 150px;
+      height: 150px;
+      top: 40%;
+      left: 10%;
+      animation-duration: 22s;
+      animation-delay: -10s;
+      background: #f97316;
+      opacity: 0.05;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      border-radius: 0;
+    }
+    .bg-geometric .shape:nth-child(4) {
+      width: 200px;
+      height: 200px;
+      bottom: 20%;
+      right: 10%;
+      animation-duration: 28s;
+      animation-delay: -3s;
+      background: #3b82f6;
+      opacity: 0.05;
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      border-radius: 0;
+    }
+    @keyframes floatShape {
+      0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+      100% {
+        transform: translate(40px, -40px) scale(1.15) rotate(15deg);
+      }
+    }
+
+    /* ===== MAIN WRAPPER ===== */
+    .main-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 2rem;
+    }
+
+    /* ===== TOP BADGE ===== */
+    .top-badge {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 1rem;
+    }
+    .badge-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #94a3b8;
+    }
+    .badge-item .highlight {
+      color: #f97316;
+      font-weight: 700;
+    }
+    .badge-item .reg {
+      color: #60a5fa;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 0 3rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      background: linear-gradient(135deg, #ffffff 0%, #94a3b8 50%, #f97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    .hero .subhead {
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-weight: 600;
+      color: #f97316;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+    .hero .location {
+      font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+      color: #94a3b8;
+      letter-spacing: 2px;
+    }
+    .hero .est {
+      font-size: 0.95rem;
+      color: #64748b;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0.3rem 1.5rem;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+
+    /* ===== SECTION DIVIDER ===== */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3.5rem 0 2.5rem;
+    }
+    .section-divider .line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.3), transparent);
+    }
+    .section-divider .title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      color: #64748b;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* ===== STATS SECTION ===== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      text-align: center;
+      padding: 1.5rem 0 0.5rem;
+    }
+    .stat-item {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(8px);
+      padding: 1.8rem 1rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: 0.3s;
+    }
+    .stat-item:hover {
+      border-color: rgba(249, 115, 22, 0.3);
+      transform: translateY(-4px);
+    }
+    .stat-item .number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #f97316, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+    .stat-item .label {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      font-weight: 500;
+      margin-top: 0.25rem;
+    }
+
+    /* ===== LEADERSHIP (Manager & Principal) ===== */
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .leader-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 30px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      transition: 0.4s;
+    }
+    .leader-card:hover {
+      transform: scale(1.02);
+      border-color: rgba(249, 115, 22, 0.3);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+    .leader-card .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      border: 3px solid #f97316;
+      overflow: hidden;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .leader-card .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .leader-card .name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+    .leader-card .designation {
+      color: #f97316;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .leader-card .quote {
+      color: #94a3b8;
+      font-style: italic;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.8rem;
+    }
+
+    /* ===== NOTICE BOARD ===== */
+    .notice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .notice-card {
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 4px solid #f97316;
+      padding: 1.2rem 1.5rem;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-left-color: #f97316;
+      transition: 0.3s;
+    }
+    .notice-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateX(6px);
+    }
+    .notice-card .date {
+      font-size: 0.7rem;
+      color: #60a5fa;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .notice-card .title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin: 0.3rem 0 0.2rem;
+      color: #f1f5f9;
+    }
+    .notice-card .desc {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    /* ===== GALLERY ===== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+    }
+    .gallery-item {
+      aspect-ratio: 4/3;
+      background: #1e293b;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #475569;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: 0.3s;
+      overflow: hidden;
+    }
+    .gallery-item:hover {
+      border-color: #f97316;
+      transform: scale(1.02);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .gallery-item .placeholder-text {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* ===== TEACHERS GRID (Know Your Faculty) ===== */
+    .teacher-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+    .teacher-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 24px;
+      padding: 2rem 1.5rem 1.8rem;
+      text-align: center;
+      transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .teacher-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(249, 115, 22, 0.25);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+    .teacher-card .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      border: 3px solid rgba(249, 115, 22, 0.3);
+      overflow: hidden;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .teacher-card .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .teacher-card .name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+    .teacher-card .qualification {
+      font-size: 0.85rem;
+      color: #60a5fa;
+      font-weight: 500;
+    }
+    .teacher-card .details {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.75rem;
+    }
+    .teacher-card .details .value.exp {
+      color: #f97316;
+      font-weight: 600;
+    }
+    .teacher-card .details .value {
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+
+    /* ===== FORMS (Admission + Appointment) ===== */
+    .forms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+    .form-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 28px;
+      padding: 2rem 1.8rem;
+      transition: 0.3s;
+    }
+    .form-card:hover {
+      border-color: rgba(249, 115, 22, 0.2);
+    }
+    .form-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: #f1f5f9;
+    }
+    .form-card h3 span {
+      color: #f97316;
+    }
+    .form-card .sub {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.2rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.3);
+      color: #e2e8f0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: 0.3s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #f97316;
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .btn-submit {
+      background: linear-gradient(135deg, #f97316, #ea580c);
+      border: none;
+      color: #fff;
+      font-weight: 700;
+      padding: 0.8rem 2.5rem;
+      border-radius: 100px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 1px;
+    }
+    .btn-submit:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 30px rgba(249, 115, 22, 0.3);
+    }
+
+    /* ===== CONTACT BAR ===== */
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem 4rem;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 40px;
+      padding: 1.8rem 2.5rem;
+      margin-top: 2rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1rem;
+      color: #cbd5e1;
+    }
+    .contact-item .icon {
+      font-size: 1.8rem;
+    }
+    .contact-item .detail {
+      font-weight: 600;
+      color: #f1f5f9;
+      font-size: 1.05rem;
+    }
+    .contact-item .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: #64748b;
+      letter-spacing: 1px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      font-size: 0.85rem;
+      color: #475569;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .main-wrapper {
+        padding: 1rem 1rem 2rem;
+      }
+      .top-badge {
+        justify-content: center;
+      }
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .stat-item .number {
+        font-size: 2rem;
+      }
+      .leadership-grid {
+        grid-template-columns: 1fr;
+      }
+      .forms-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 1.5rem;
+        border-radius: 24px;
+      }
+      .teacher-grid {
+        grid-template-columns: 1fr;
+      }
+      .notice-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== BG GEOMETRIC ===== -->
+  <div class="bg-geometric">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <!-- ===== MAIN WRAPPER ===== -->
+  <div class="main-wrapper">
+
+    <!-- ===== TOP BADGE ===== -->
+    <div class="top-badge">
+      <div class="badge-item">📜 Reg. No. <span class="reg">709/90-91</span></div>
+      <div class="badge-item">⚖️ By the Order of the <span class="highlight">Manager</span></div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="subhead">Modern City</div>
+      <h1>MONTESSORY<br />INTER COLLEGE</h1>
+      <div class="location">📍 Civil Lines, Gonda</div>
+      <div class="est">⏳ Est. 1990 | Affiliated to U.P. Board</div>
+    </section>
+
+    <!-- ===== STATS ===== -->
+    <div class="section-divider"><span class="line"></span><span class="title">Our Legacy</span><span class="line"></span></div>
+    <div class="stats-grid">
+      <div class="stat-item"><div class="number">1000+</div><div class="label">Students Passed</div></div>
+      <div class="stat-item"><div class="number">3</div><div class="label">Decades of Excellence</div></div>
+      <div class="stat-item"><div class="number">50+</div><div class="label">Dedicated Faculty</div></div>
+      <div class="stat-item"><div class="number">100%</div><div class="label">Commitment to Growth</div></div>
+    </div>
+    <p style="text-align:center; color:#94a3b8; margin-top:0.5rem; font-style:italic; font-size:0.95rem;">
+      🏆 Thousands of students built their foundation & passed in this decade.
+    </p>
+
+    <!-- ===== LEADERSHIP (Manager Image Added!) ===== -->
+    <div class="section-divider"><span class="line"></span><span class="title">Leadership</span><span class="line"></span></div>
+    <div class="leadership-grid">
+      
+      <!-- MANAGER CARD WITH YOUR REAL IMAGE -->
+      <div class="leader-card">
+        <div class="avatar">
+          <!-- "Passport Size manager.jpg" – space encoded as %20 -->
+          <img src="Passport%20Size%20manager.jpg" alt="Mr. S.K. Agarwal - Manager">
+        </div>
+        <div class="name">Mr. S.K. Agarwal</div>
+        <div class="designation">Manager</div>
+        <div class="quote">"Discipline and values are the foundation of true education."</div>
+      </div>
+
+      <!-- PRINCIPAL CARD (still emoji – replace with your image later) -->
+      <div class="leader-card">
+        <div class="avatar">👩‍🏫</div>
+        <div class="name">Dr. Meera Singh</div>
+        <div class="designation">Principal</div>
+        <div class="quote">"Every child is a unique mind — we just help them shine."</div>
+      </div>
+    </div>
+
+    <!-- ===== NOTICE BOARD ===== -->
+    <div class="section-divider"><span class="line"></span><span class="title">Notice Board</span><span class="line"></span></div>
+    <div class="notice-grid">
+      <div class="notice-card"><div class="date">📅 15 Aug 2026</div><div class="title">Independence Day Celebration</div><div class="desc">Flag hoisting at 8:00 AM. All students must wear white uniform.</div></div>
+      <div class="notice-card"><div class="date">📅 10 Sep 2026</div><div class="title">Parent-Teacher Meeting</div><div class="desc">PTM for classes 10-12. Report cards will be distributed.</div></div>
+      <div class="notice-card"><div class="date">📅 01 Oct 2026</div><div class="title">Admissions Open 2026-27</div><div class="desc">Registration for Nursery to Class 12 begins. Early bird fee waiver.</div></div>
+      <div class="notice-card"><div class="date">📅 05 Nov 2026</div><div class="title">Annual Sports Meet</div><div class="desc">Track & field events. Parents are invited to cheer.</div></div>
+    </div>
+
+    <!-- ===== KNOW YOUR FACULTY ===== -->
+    <div class="section-divider"><span class="line"></span><span class="title">Know Your Faculty</span><span class="line"></span></div>
+    <div class="teacher-grid" id="teacherGrid"></div>
+
+    <!-- ===== CAMPUS GALLERY ===== -->
+    <div class="section-divider"><span class="line"></span><span class="title">Campus Tour</span><span class="line"></span></div>
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item"><span class="placeholder-text">📸 Campus 1</span></div>
+      <div class="gallery-item"><span class="placeholder-text">📸 Campus 2</span></div>
+      <div class="gallery-item"><span class="placeholder-text">📸 Campus 3</span></div>
+      <div class="gallery-item"><span class="placeholder-text">📸 Campus 4</span></div>
+      <div class="gallery-item"><span class="placeholder-text">📸 Campus 5</span></div>
+      <div class="gallery-item"><span class="placeholder-text">📸 Campus 6</span></div>
+    </div>
+
+    <!-- ===== ADMISSION INQUIRY + APPOINTMENT ===== -->
+    <div class="section-divider"><span class="line"></span><span class="title">Get In Touch</span><span class="line"></span></div>
+    <div class="forms-grid">
+      <div class="form-card">
+        <h3>📝 <span>Admission</span> Inquiry</h3>
+        <div class="sub">Fill this form to know about fees, curriculum & more.</div>
+        <form onsubmit="alert('Thank you! Our admission team will contact you shortly.'); return false;">
+          <div class="form-group"><label>Student's Name</label><input type="text" placeholder="Full name" required /></div>
+          <div class="form-group"><label>Parent's Mobile</label><input type="tel" placeholder="10-digit number" required /></div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com" /></div>
+          <div class="form-group"><label>Class Applying For</label><select><option>Nursery</option><option>LKG</option><option>UKG</option><option>1-5</option><option>6-8</option><option>9-10</option><option>11-12</option></select></div>
+          <div class="form-group"><label>Message</label><textarea placeholder="Any specific query..."></textarea></div>
+          <button class="btn-submit">Send Inquiry →</button>
+        </form>
+      </div>
+
+      <div class="form-card">
+        <h3>📅 <span>Book an</span> Appointment</h3>
+        <div class="sub">Visit the campus & meet our counselors face-to-face.</div>
+        <form onsubmit="alert('Appointment requested! We will confirm via SMS.'); return false;">
+          <div class="form-group"><label>Your Name</label><input type="text" placeholder="Full name" required /></div>
+          <div class="form-group"><label>Phone</label><input type="tel" placeholder="10-digit number" required /></div>
+          <div class="form-group"><label>Preferred Date</label><input type="date" required /></div>
+          <div class="form-group"><label>Preferred Time</label><input type="time" required /></div>
+          <div class="form-group"><label>Purpose</label><select><option>Admission consultation</option><option>Fee structure</option><option>Transfer certificate</option><option>General visit</option></select></div>
+          <button class="btn-submit">Request Appointment →</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===== CONTACT US ===== -->
+    <div class="section-divider"><span class="line"></span><span class="title">Contact Us</span><span class="line"></span></div>
+    <div class="contact-bar">
+      <div class="contact-item"><span class="icon">📞</span><div><div class="label">Call Us</div><div class="detail">+91-98765 43210</div></div></div>
+      <div class="contact-item"><span class="icon">📧</span><div><div class="label">Mail Us</div><div class="detail">info@moderncitygonda.edu.in</div></div></div>
+      <div class="contact-item"><span class="icon">📍</span><div><div class="label">Visit Us</div><div class="detail">Civil Lines, Gonda, U.P.</div></div></div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+      &copy; 2026 Modern City Montessori Inter College, Civil Lines, Gonda &bull;
+      Built with ❤️ for the future of education
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ===== JAVASCRIPT – TEACHER DATA ===== -->
+  <!-- ============================================================ -->
+  <script>
+    const teachers = [{
+      name: "Dr. Anita Sharma",
+      qualification: "Ph.D. (Education), M.A.",
+      experience: "15 Years",
+      age: "45",
+      avatar: "https://ui-avatars.com/api/?name=Anita+Sharma&background=1e3a8a&color=fff&size=128&bold=true"
+    }, {
+      name: "Mr. Rajesh Kumar",
+      qualification: "M.Sc. (Maths), B.Ed.",
+      experience: "12 Years",
+      age: "38",
+      avatar: "https://ui-avatars.com/api/?name=Rajesh+Kumar&background=1e3a8a&color=fff&size=128&bold=true"
+    }, {
+      name: "Mrs. Priya Singh",
+      qualification: "M.A. (English), B.Ed.",
+      experience: "10 Years",
+      age: "35",
+      avatar: "https://ui-avatars.com/api/?name=Priya+Singh&background=1e3a8a&color=fff&size=128&bold=true"
+    }, {
+      name: "Mr. Vikram Patel",
+      qualification: "M.Com., B.Ed.",
+      experience: "8 Years",
+      age: "32",
+      avatar: "https://ui-avatars.com/api/?name=Vikram+Patel&background=1e3a8a&color=fff&size=128&bold=true"
+    }, {
+      name: "Ms. Neha Verma",
+      qualification: "M.Sc. (Bio), B.Ed.",
+      experience: "6 Years",
+      age: "29",
+      avatar: "https://ui-avatars.com/api/?name=Neha+Verma&background=1e3a8a&color=fff&size=128&bold=true"
+    }, {
+      name: "Mr. Suresh Yadav",
+      qualification: "B.P.Ed., M.A. (Sports)",
+      experience: "5 Years",
+      age: "30",
+      avatar: "https://ui-avatars.com/api/?name=Suresh+Yadav&background=1e3a8a&color=fff&size=128&bold=true"
+    }];
+
+    const grid = document.getElementById('teacherGrid');
+    teachers.forEach(t => {
+      const card = document.createElement('div');
+      card.className = 'teacher-card';
+      card.innerHTML = `
+        <div class="avatar"><img src="${t.avatar}" alt="${t.name}" loading="lazy" /></div>
+        <div class="name">${t.name}</div>
+        <div class="qualification">${t.qualification}</div>
+        <div class="details">
+          <span>🎯 <span class="value exp">${t.experience}</span></span>
+          <span>🎂 <span class="value">${t.age} yrs</span></span>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
