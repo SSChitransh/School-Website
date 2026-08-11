@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern City Montessori Inter College</title>
+  <!-- Google Fonts for clean typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0b1120;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+
+    /* ===== GEOMETRIC BACKGROUND (Sarvam-inspired) ===== */
+    .bg-geometric {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .bg-geometric .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.08;
+      background: linear-gradient(135deg, #f97316, #3b82f6);
+      animation: floatShape 20s infinite alternate ease-in-out;
+    }
+
+    .bg-geometric .shape:nth-child(1) {
+      width: 400px;
+      height: 400px;
+      top: -100px;
+      right: -100px;
+      animation-duration: 25s;
+    }
+    .bg-geometric .shape:nth-child(2) {
+      width: 300px;
+      height: 300px;
+      bottom: -50px;
+      left: -50px;
+      animation-duration: 18s;
+      animation-delay: -5s;
+      background: linear-gradient(135deg, #3b82f6, #f97316);
+    }
+    .bg-geometric .shape:nth-child(3) {
+      width: 150px;
+      height: 150px;
+      top: 40%;
+      left: 10%;
+      animation-duration: 22s;
+      animation-delay: -10s;
+      background: #f97316;
+      opacity: 0.05;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      border-radius: 0;
+    }
+    .bg-geometric .shape:nth-child(4) {
+      width: 200px;
+      height: 200px;
+      bottom: 20%;
+      right: 10%;
+      animation-duration: 28s;
+      animation-delay: -3s;
+      background: #3b82f6;
+      opacity: 0.05;
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      border-radius: 0;
+    }
+
+    @keyframes floatShape {
+      0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+      100% {
+        transform: translate(40px, -40px) scale(1.15) rotate(15deg);
+      }
+    }
+
+    /* ===== MAIN WRAPPER ===== */
+    .main-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 4rem;
+    }
+
+    /* ===== TOP BADGE (Reg. No. & Manager Order) ===== */
+    .top-badge {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 1rem;
+    }
+
+    .badge-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      color: #94a3b8;
+    }
+
+    .badge-item .highlight {
+      color: #f97316;
+      font-weight: 700;
+    }
+
+    .badge-item .reg {
+      color: #60a5fa;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 0 4rem;
+      position: relative;
+    }
+
+    .hero .portal-icon {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      opacity: 0.6;
+    }
+    .hero .portal-icon svg {
+      width: 72px;
+      height: 72px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      background: linear-gradient(135deg, #ffffff 0%, #94a3b8 50%, #f97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .subhead {
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-weight: 600;
+      color: #f97316;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero .location {
+      font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+      color: #94a3b8;
+      font-weight: 400;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .est {
+      font-size: 0.95rem;
+      color: #64748b;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 0.3rem 1.5rem;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: inline-block;
+    }
+
+    .hero .tagline {
+      margin-top: 2rem;
+      max-width: 600px;
+      font-size: 1.1rem;
+      color: #cbd5e1;
+      line-height: 1.7;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 1rem 2rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero .tagline span {
+      color: #f97316;
+      font-weight: 700;
+    }
+
+    /* ===== DIVIDER ===== */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3rem 0 2.5rem;
+    }
+    .section-divider .line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.3), transparent);
+    }
+    .section-divider .title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    /* ===== TEACHERS GRID ===== */
+    .teachers-section h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .teachers-section h2 .highlight {
+      color: #f97316;
+    }
+    .teachers-section .sub-title {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 3rem;
+      font-size: 1rem;
+    }
+
+    .teacher-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    /* ===== TEACHER CARD ===== */
+    .teacher-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 24px;
+      padding: 2rem 1.5rem 1.8rem;
+      text-align: center;
+      transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .teacher-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      padding: 1px;
+      background: linear-gradient(135deg, transparent 40%, rgba(249, 115, 22, 0.2), transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      transition: all 0.5s;
+    }
+
+    .teacher-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(249, 115, 22, 0.25);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(249, 115, 22, 0.05);
+    }
+
+    .teacher-card:hover::before {
+      background: linear-gradient(135deg, #f97316, #3b82f6, #f97316);
+      opacity: 0.5;
+    }
+
+    .teacher-card .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      margin: 0 auto 1.2rem;
+      border: 3px solid rgba(249, 115, 22, 0.3);
+      transition: all 0.4s;
+      overflow: hidden;
+      background: #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .teacher-card:hover .avatar {
+      border-color: #f97316;
+      transform: scale(1.04);
+      box-shadow: 0 0 30px rgba(249, 115, 22, 0.2);
+    }
+
+    .teacher-card .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .teacher-card .name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 0.15rem;
+    }
+
+    .teacher-card .qualification {
+      font-size: 0.9rem;
+      color: #60a5fa;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .teacher-card .details {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.75rem;
+    }
+
+    .teacher-card .details span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .teacher-card .details .label {
+      color: #64748b;
+      font-weight: 400;
+    }
+    .teacher-card .details .value {
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+    .teacher-card .details .value.exp {
+      color: #f97316;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      font-size: 0.85rem;
+      color: #475569;
+      letter-spacing: 0.5px;
+    }
+    .footer a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      color: #f97316;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .main-wrapper {
+        padding: 1rem 1rem 3rem;
+      }
+      .top-badge {
+        justify-content: center;
+        gap: 0.75rem;
+      }
+      .badge-item {
+        font-size: 0.65rem;
+        padding: 0.35rem 0.9rem;
+      }
+      .hero {
+        padding: 1.5rem 0 2.5rem;
+      }
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+      .hero .tagline {
+        font-size: 0.9rem;
+        padding: 0.8rem 1rem;
+      }
+      .teacher-grid {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+      .teacher-card .details {
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 900px) {
+      .teacher-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== GEOMETRIC BG ===== -->
+  <div class="bg-geometric">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <!-- ===== MAIN ===== -->
+  <div class="main-wrapper">
+
+    <!-- ===== TOP BADGE ===== -->
+    <div class="top-badge">
+      <div class="badge-item">
+        📜 <span>Reg. No. <span class="reg">709/90-91</span></span>
+      </div>
+      <div class="badge-item">
+        ⚖️ <span>By the Order of the <span class="highlight">Manager</span></span>
+      </div>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="portal-icon">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="40" stroke="#f97316" stroke-width="1.5" opacity="0.3"/>
+          <circle cx="50" cy="50" r="28" stroke="#60a5fa" stroke-width="1.5" opacity="0.2"/>
+          <path d="M50 10 L50 90 M10 50 L90 50" stroke="#f97316" stroke-width="1" opacity="0.15"/>
+          <path d="M50 15 L85 50 L50 85 L15 50 L50 15Z" stroke="#f97316" stroke-width="1.5" opacity="0.3"/>
+          <circle cx="50" cy="50" r="10" fill="#f97316" opacity="0.2"/>
+        </svg>
+      </div>
+
+      <div class="subhead">Modern City</div>
+      <h1>MONTESSORY<br />INTER COLLEGE</h1>
+      <div class="location">📍 Civil Lines, Gonda</div>
+      <div class="est">⏳ Est. 1990 | Affiliated to U.P. Board</div>
+
+      <div class="tagline">
+        <span>“</span> Where tradition meets tomorrow — nurturing young minds with
+        <span>excellence</span>, <span>discipline</span>, and <span>innovation</span> <span>”</span>
+      </div>
+    </section>
+
+    <!-- ===== DIVIDER ===== -->
+    <div class="section-divider">
+      <span class="line"></span>
+      <span class="title">Our Mentors</span>
+      <span class="line"></span>
+    </div>
+
+    <!-- ===== TEACHERS SECTION ===== -->
+    <section class="teachers-section">
+      <h2>Meet Our <span class="highlight">Faculty</span></h2>
+      <p class="sub-title">Dedicated educators shaping the future of Gonda</p>
+
+      <div class="teacher-grid" id="teacherGrid">
+        <!-- Teachers will be injected by JavaScript -->
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+      &copy; 2026 Modern City Montessori Inter College, Civil Lines, Gonda &bull;
+      Built with ❤️ for the future of education
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ===== JAVASCRIPT – TEACHER DATA (EDIT THIS ARRAY) ===== -->
+  <!-- ============================================================ -->
+  <script>
+    const teachers = [
+      {
+        name: "Dr. Anita Sharma",
+        qualification: "Ph.D. (Education), M.A.",
+        experience: "15 Years",
+        age: "45",
+        // You can replace the avatar URL with actual photo URLs later.
+        // For now, UI Avatars generates a nice placeholder with initials.
+        avatar: "https://ui-avatars.com/api/?name=Anita+Sharma&background=1e3a8a&color=fff&size=128&bold=true"
+      },
+      {
+        name: "Mr. Rajesh Kumar",
+        qualification: "M.Sc. (Maths), B.Ed.",
+        experience: "12 Years",
+        age: "38",
+        avatar: "https://ui-avatars.com/api/?name=Rajesh+Kumar&background=1e3a8a&color=fff&size=128&bold=true"
+      },
+      {
+        name: "Mrs. Priya Singh",
+        qualification: "M.A. (English), B.Ed.",
+        experience: "10 Years",
+        age: "35",
+        avatar: "https://ui-avatars.com/api/?name=Priya+Singh&background=1e3a8a&color=fff&size=128&bold=true"
+      },
+      {
+        name: "Mr. Vikram Patel",
+        qualification: "M.Com., B.Ed.",
+        experience: "8 Years",
+        age: "32",
+        avatar: "https://ui-avatars.com/api/?name=Vikram+Patel&background=1e3a8a&color=fff&size=128&bold=true"
+      },
+      {
+        name: "Ms. Neha Verma",
+        qualification: "M.Sc. (Bio), B.Ed.",
+        experience: "6 Years",
+        age: "29",
+        avatar: "https://ui-avatars.com/api/?name=Neha+Verma&background=1e3a8a&color=fff&size=128&bold=true"
+      },
+      {
+        name: "Mr. Suresh Yadav",
+        qualification: "B.P.Ed., M.A. (Sports)",
+        experience: "5 Years",
+        age: "30",
+        avatar: "https://ui-avatars.com/api/?name=Suresh+Yadav&background=1e3a8a&color=fff&size=128&bold=true"
+      }
+    ];
+
+    // ----- Render Cards -----
+    const grid = document.getElementById('teacherGrid');
+
+    teachers.forEach(t => {
+      const card = document.createElement('div');
+      card.className = 'teacher-card';
+
+      card.innerHTML = `
+        <div class="avatar">
+          <img src="${t.avatar}" alt="${t.name}" loading="lazy" />
+        </div>
+        <div class="name">${t.name}</div>
+        <div class="qualification">${t.qualification}</div>
+        <div class="details">
+          <span><span class="label">🎯</span> <span class="value exp">${t.experience}</span></span>
+          <span><span class="label">🎂</span> <span class="value">${t.age} yrs</span></span>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
